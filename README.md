@@ -18,4 +18,4 @@ Este repositorio almacena todos los trabajos prácticos realizados durante la cu
 ## 📌 Estructura del repositorio:  
 - 📁 Cada trabajo está organizado en carpetas individuales.  
 - 📝 Los archivos de código fuente (`.py`) incluyen comentarios y estructura adecuada.  
-- ✅ Se busca mantener un código limpio, ordenado y bien documentado.  
+- ✅ Se busca mantener un código limpio, ordenado y bien documentado.
