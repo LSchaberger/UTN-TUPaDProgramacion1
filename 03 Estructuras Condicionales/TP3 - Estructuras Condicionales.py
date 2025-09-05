@@ -84,11 +84,56 @@ print ("______________________________________")
 print ("")
 contrasena = input ("Ingrese una contraseña de entre 8 y 14 caracteres: ")
 print ("")
-#Función "len ()" cuenta cantidad de caracteres de variable dentro de parentesis.
+#Función "len ()" cuenta cantidad de caracteres que almacena la variable dentro de parentesis.
 cantidad_caracteres = len (contrasena)
 #Usar operadores relacionales de esta manera evita usar un operador lógico "and" y duplicidad de variable.
 if 8 <= cantidad_caracteres <= 14:
     print ("Ha ingresado una contraseña correcta")
 else:
     print ("Por favor, ingrese una contraseña de entre 8 y 14 caracteres")
+print ("______________________________________")
+
+#6) Escribir un programa que tome la lista
+#numeros_aleatorios, calcule su moda, su mediana y su media y las compare para determinar si
+#hay sesgo positivo, negativo o no hay sesgo. Imprimir el resultado por pantalla.
+#Definir la lista numeros_aleatorios de la siguiente forma:
+#import random
+#numeros_aleatorios = [random.randint(1, 100) for i in range(50)]
+#Nota: el bloque de código anterior crea una lista con 50 números entre 1 y 100 elegidos de
+#forma aleatoria.
+
+print ("")
+import random
+#Agregué "StatisticsError" por si hay más de una moda para que el algoritmo no se rompa.
+from statistics import mode, median, mean, StatisticsError
+numeros_aleatorios = [random.randint(1, 100) for i in range(50)]
+mediana = median (numeros_aleatorios)
+media = mean (numeros_aleatorios)
+#De esta forma agarramos el error, si lo hay, y hacemos que el algoritmo siga sin problemas.
+try:
+    moda = mode (numeros_aleatorios)
+except StatisticsError:
+    moda = None
+print (f"Lista 50 Números: {numeros_aleatorios}")
+print ("")
+print (f"Mediana: {mediana}")
+print (f"Media: {media}")
+print (f"Moda: {moda}")
+if moda == None:
+    print ("")
+    print ("No se pudo calcular la moda porque hay más de una moda, lamentablemente no se pueden calcular sus sesgos")
+#Si moda es igual a None (Valor nulo) no se puede calcular su sesgo.
+else:
+    if media > mediana > moda:
+        print ("")
+        print ("Sesgo Positivo. Media > Mediana > Moda")
+    elif media < mediana < moda:
+        print ("")
+        print ("Sesgo Negativo. Media < Mediana < Moda")
+    elif media == mediana == moda:
+        print ("")
+        print ("Sin Sesgo. Media, Mediana y Moda son iguales")
+    else:
+        print ("")
+        print ("No cumple con los criterios de sesgo")
 print ("______________________________________")
