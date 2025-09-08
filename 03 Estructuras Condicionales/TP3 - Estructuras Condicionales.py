@@ -11,13 +11,12 @@
 
 print ("______________________________________")
 print ("")
-#Función "int" indica que el número a ingresar será un entero.
 edad_usuario = int (input("Ingrese su edad: "))
 print ("")
 if edad_usuario >= 18:
     print ("Es mayor de edad")
 else:
-    # Para que el algoritmo acabe sin hacer nada.
+    #"pass" para que el algoritmo acabe sin hacer nada.
     pass
 print ("______________________________________")
 
@@ -60,7 +59,6 @@ print ("______________________________________")
 print ("")
 edad_para_categoria = int (input ("Ingrese su edad: "))
 print ("")
-#Estructura condicional anidada o múltiple (if - elif - else).
 if 0 < edad_para_categoria <= 11:
     print ("Categoría: Niño/a")
 #Usar operadores relacionales de esta manera evita usar un operador lógico "and" y duplicidad de variable.
