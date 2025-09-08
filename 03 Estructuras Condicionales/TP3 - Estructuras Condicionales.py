@@ -12,12 +12,12 @@
 print ("______________________________________")
 print ("")
 #Función "int" indica que el número a ingresar será un entero.
-edad_usuario = int(input("Ingrese su edad: "))
+edad_usuario = int (input("Ingrese su edad: "))
 print ("")
 if edad_usuario >= 18:
     print ("Es mayor de edad")
 else:
-    # Función "pass" hace que el algoritmo acabe sin hacer nada.
+    # Para que el algoritmo acabe sin hacer nada.
     pass
 print ("______________________________________")
 
@@ -84,7 +84,6 @@ print ("______________________________________")
 print ("")
 contrasena = input ("Ingrese una contraseña de entre 8 y 14 caracteres: ")
 print ("")
-#Función "len ()" cuenta cantidad de caracteres que almacena la variable dentro de parentesis.
 cantidad_caracteres = len (contrasena)
 #Usar operadores relacionales de esta manera evita usar un operador lógico "and" y duplicidad de variable.
 if 8 <= cantidad_caracteres <= 14:
@@ -122,18 +121,136 @@ print (f"Moda: {moda}")
 if moda == None:
     print ("")
     print ("No se pudo calcular la moda porque hay más de una moda, lamentablemente no se pueden calcular sus sesgos")
-#Si moda es igual a None (Valor nulo) no se puede calcular su sesgo.
 else:
+    print ("")
     if media > mediana > moda:
-        print ("")
         print ("Sesgo Positivo. Media > Mediana > Moda")
     elif media < mediana < moda:
-        print ("")
         print ("Sesgo Negativo. Media < Mediana < Moda")
     elif media == mediana == moda:
-        print ("")
         print ("Sin Sesgo. Media, Mediana y Moda son iguales")
     else:
-        print ("")
         print ("No cumple con los criterios de sesgo")
+print ("______________________________________")
+
+
+#7) Escribir un programa que solicite una frase o palabra al usuario. Si el string ingresado
+#termina con vocal, añadir un signo de exclamación al final e imprimir el string resultante por
+#pantalla; en caso contrario, dejar el string tal cual lo ingresó el usuario e imprimirlo por
+#pantalla.
+
+print ("")
+frase = input ("Ingrese una frase: ")
+vocales = "aeiouáéíóúAEIOUÁÉÍÓÚ"
+#Conjunción "frase" and "frase[-1], primero evalúa si el usuario ingresó texto o está vacío y luego con frase[-1] evalúa la última letra"
+if frase and frase[-1] in vocales:
+    print ("")
+    print (f"{frase}!")
+else:
+    print ("")
+    print (frase)
+print ("______________________________________")
+    
+
+#8) Escribir un programa que solicite al usuario que ingrese su nombre y el número 1, 2 o 3
+#dependiendo de la opción que desee:
+#1. Si quiere su nombre en mayúsculas. Por ejemplo: PEDRO.
+#2. Si quiere su nombre en minúsculas. Por ejemplo: pedro.
+#3. Si quiere su nombre con la primera letra mayúscula. Por ejemplo: Pedro.
+#El programa debe transformar el nombre ingresado de acuerdo a la opción seleccionada por el
+#usuario e imprimir el resultado por pantalla. Nota: investigue uso de las funciones upper(),
+#lower() y title() de Python para convertir entre mayúsculas y minúsculas.
+
+print ("")
+nombre_usuario = input ("Ingrese su nombre: ")
+print ("")
+print ("""
+1. Si quiere su nombre en mayúsculas. Por ejemplo: PEDRO.
+2. Si quiere su nombre en minúsculas. Por ejemplo: pedro.
+3. Si quiere su nombre con la primera letra mayúscula. Por ejemplo: Pedro.""")
+print ("")
+opcion = int (input("Ingrese una opción: "))
+print ("")
+if opcion == 1:
+    print (nombre_usuario.upper())
+elif opcion == 2:
+    print (nombre_usuario.lower())
+elif opcion == 3:
+    print (nombre_usuario.title())
+else:
+    print ("Opción ingresada incorrecta, vuelva a intentarlo")
+print ("______________________________________")
+
+
+#9) Escribir un programa que pida al usuario la magnitud de un terremoto, clasifique la
+#magnitud en una de las siguientes categorías según la escala de Richter e imprima el resultado
+#por pantalla:
+#● Menor que 3: "Muy leve" (imperceptible).
+#● Mayor o igual que 3 y menor que 4: "Leve" (ligeramente perceptible).
+#● Mayor o igual que 4 y menor que 5: "Moderado" (sentido por personas, pero
+#generalmente no causa daños).
+#● Mayor o igual que 5 y menor que 6: "Fuerte" (puede causar daños en estructuras
+#débiles).
+#● Mayor o igual que 6 y menor que 7: "Muy Fuerte" (puede causar daños significativos).
+#● Mayor o igual que 7: "Extremo" (puede causar graves daños a gran escala).
+
+print ("")
+#"float" para que lea números decimales.
+magnitud_terremoto = float (input("Ingrese la magnitud del terremoto: "))
+print ("")
+if magnitud_terremoto < 3:
+    print ("Muy leve (imperceptible)")
+elif 3 >= magnitud_terremoto < 4:
+    print ("Leve (ligeramente perceptible)")
+elif 4 >= magnitud_terremoto < 5:
+    print ("Moderado (sentido por personas, pero generalmente no causa daños)")
+elif 5 >= magnitud_terremoto < 6:
+    print ("Fuerte (puede causar daños en estructuras débiles)")
+elif 6 >= magnitud_terremoto < 7:
+    print ("Muy Fuerte (puede causar daños significativos)")
+elif magnitud_terremoto >= 7:
+    print ("Extremo (puede causar graves daños a gran escala)")
+else:
+    print ("Magnitud incorrecta en escala Richter, vuelva a intentarlo")
+print ("______________________________________")
+
+#10) Escribir un programa que pregunte al usuario en cuál hemisferio se encuentra (N/S), qué mes
+#del año es y qué día es. El programa deberá utilizar esa información para imprimir por pantalla
+#si el usuario se encuentra en otoño, invierno, primavera o verano.
+
+print ("")
+#".strip()" eliminamos espacios vacios si los hay y ".lower() para normalizar a minúsculas"
+hemisferio = input ("Ingrese la primera letra del hemisferio donde se encuentra N/S: ").strip().lower()
+print ("")
+#El mes se almacena como string, la idea es luego eliminar el 0 a la izquierda, si lo hay, para evitar errores.
+mes = (input ("Ingrese el mes del año (1 - 12): "))
+#El mes se convierte a entero y elimina automáticamente el 0 delante de cualquier número, ej: 01, queda 1.
+mes = int (mes)
+print ("")
+dia = (input ("Ingrese el día del mes (1 - 31): "))
+dia = int (dia)
+print ("")
+if hemisferio == "n":
+    if (mes == 12 and dia >= 21) or mes == 1 or mes == 2 or (mes == 3 and dia <= 20):
+        print ("Te encontras en invierno")
+    elif (mes == 3 and dia >= 21) or mes == 4 or mes == 5 or (mes == 6 and dia <= 20):
+        print ("Te encontras en primavera")
+    elif (mes == 6 and dia >= 21) or mes == 7 or mes == 8 or (mes == 9 and dia <= 20):
+        print ("Te encontras en verano")
+    elif (mes == 9 and dia >= 21) or mes == 10 or mes == 11 or (mes == 12 and dia <= 20):
+        print ("Te encontras en otoño")
+    else:
+        print ("Datos ingresados incorrectos, vuelva a intentarlo")
+else:
+    if hemisferio == "s":
+        if (mes == 12 and dia >= 21) or mes == 1 or mes == 2 or (mes == 3 and dia <= 20):
+            print ("Te encontras en verano")
+        elif (mes == 3 and dia >= 21) or mes == 4 or mes == 5 or (mes == 6 and dia <= 20):
+            print ("Te encontras en otoño")
+        elif (mes == 6 and dia >= 21) or mes == 7 or mes == 8 or (mes == 9 and dia <= 20):
+            print ("Te encontras en invierno")
+        elif (mes == 9 and dia >= 21) or mes == 10 or mes == 11 or (mes == 12 and dia <= 20):
+            print ("Te encontras en primavera")
+        else:
+            print ("Datos ingresados incorrectos, vuelva a intentarlo")
 print ("______________________________________")
