@@ -107,21 +107,102 @@ print ("______________________________________")
 print ("")
 num1 = 0
 suma = 0
-num2 = 1
-#Bucle infinito.
-while 0 < num2:
-    #Evitamos que se detenga por un ValueError.
+while True:
     try:
-        print ("")
-        num2 = int((input("Ingrese un número entero positivo: ")))
-        print ("")
-        num2 == ValueError
-        for i in range (num1, num2+1):
+        print("")
+        num2 = int(input("Ingrese un número entero positivo: "))
+        print("")
+        if num2 < 0:
+            print("El número debe ser positivo, vuelva a intentarlo")
+            continue
+        #Se reinicia suma en cada cálculo
+        suma = 0
+        for i in range(num1, num2 + 1):
             suma = suma + i
-        print (f"La suma entre {num1} y {num2} es: {suma}")
-        #Cortamos el bucle infinito luego de la suma.
+        print(f"La suma entre {num1} y {num2} es: {suma}")
         break
-    except:
-        print ("")
-        print ("Solo se permiten números enteros positivos, vuelva a intentarlo")
+    except ValueError:
+        print("")
+        print("Solo se permiten números enteros, vuelva a intentarlo")
+print ("______________________________________")
+
+
+#8) Escribe un programa que permita al usuario ingresar 100 números enteros. Luego, el
+#programa debe indicar cuántos de estos números son pares, cuántos son impares, cuántos son
+#negativos y cuántos son positivos. (Nota: para probar el programa puedes usar una cantidad
+#menor, pero debe estar preparado para procesar 100 números con un solo cambio).
+
+print ("")
+cantpares = 0
+cantimpares = 0
+cantnegativos = 0
+cantpositivos = 0
+rango1 = 1
+rango2 = 100
+for i in range(rango1, rango2 + 1):
+    while True:
+        try:
+            num = int(input(f"Ingrese el {i}° número entero: "))
+            print("")
+            break
+        except ValueError:
+            print ("")
+            print("Solo se permiten números enteros, vuelva a intentarlo")
+            print ("")
+    if num % 2 == 0:
+        cantpares += 1
+    else:
+        cantimpares += 1
+    if num > 0:
+        cantpositivos += 1
+    elif num < 0:
+        cantnegativos += 1
+else:
+    print(f"""Cantidad de:
+    Pares: {cantpares}
+    Impares: {cantimpares}
+    Positivos: {cantpositivos}
+    Negativos: {cantnegativos}""")
+print ("______________________________________")
+
+
+#9) Elabora un programa que permita al usuario ingresar 100 números enteros y luego calcule la
+#media de esos valores. (Nota: puedes probar el programa con una cantidad menor, pero debe
+#poder procesar 100 números cambiando solo un valor).
+
+print ("")
+cant_num = 100
+suma = 0
+print(f"Ingrese {cant_num} números enteros:")
+print ("")
+for i in range(1, cant_num + 1):
+    while True:
+        try:
+            num = int(input(f"Ingrese el {i}° número: "))
+            suma += num
+            break
+        except ValueError:
+            print ("")
+            print("Solo se permiten números enteros, vuelva a intentarlo")
+            print ("")
+media = suma / cant_num
+print("")
+print(f"La media de los {cant_num} números ingresados es: {media}")
+print ("______________________________________")
+
+
+#10) Escribe un programa que invierta el orden de los dígitos de un número ingresado por el
+#usuario. Ejemplo: si el usuario ingresa 547, el programa debe mostrar 745.
+
+print ("")
+print ("Invirtiendo números")
+print ("")
+num = int((input("Ingrese un número: ")))
+if num < 0:
+    #Quitamos el signo con abs, invertimos con función slicing [::-1] y volvemos a poner el signo -int
+    num_invertido = -int(str(abs(num))[::-1])
+else:
+    num_invertido = int(str(num)[::-1])
+print ("")
+print (f"El número {num} invertido es: {num_invertido}")
 print ("______________________________________")
