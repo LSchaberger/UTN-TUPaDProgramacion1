@@ -47,39 +47,53 @@ contactos = {}  #Diccionario se inicializa vacio.
 #Con maximo_contactos controlamos la cantidad de contactos a ingresar (valor modificable).
 maximo_contactos = 5
 
+#Función que valida solo el ingreso de letras. Mensaje input y mensaje error modificable.
+def validacion_solo_letras_input (mensaje_input,mensaje_error):
+    while True:
+        texto = input(mensaje_input)
+
+        if not texto:
+            print("****\nNo ingresaste nada, volve a intentarlo****")
+            continue
+
+        if not texto.isalpha():
+            print(mensaje_error)
+            continue
+
+        return texto
+
+#Función que valida solo el ingreso de números. Mensaje input y mensaje error modificable.
+def validacion_solo_numeros_input (mensaje_input, mensaje_error):
+    while True:
+        numeros = input(mensaje_input)
+
+        if not numeros:
+            print("****\nNo ingresaste nada, volve a intentarlo****")
+            continue
+
+        if not numeros.isdigit():
+            print(mensaje_error)
+            continue
+
+        return numeros
+
 for i in range (1, maximo_contactos + 1):
 
-    #Bucle infinito hasta que ingrese datos correctos.
-    while True:
-        nombre_contacto = input (f"\nIngrese el nombre del contacto {i}: ").lower()
+    #Usuario ingresa el nombre de contacto.
+    ingreso_nombre_contacto = validacion_solo_letras_input (f"\nIngrese el nombre del contacto {i}: ",
+    "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****").lower()
 
-        if not nombre_contacto.isalpha():
-            print ("\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
-            continue
-        else:
-            break
+    #Usuario ingresa el número de teléfono.
+    ingreso_numero_telefono = validacion_solo_numeros_input ("\nIngrese el número de teléfono con su característica: ",
+    "\n****Número inválido, vuelva a intentarlo, solo números (sin código país +)****").strip()
 
-    while True:
-        numero_telefono = input ("\nIngrese el número de teléfono con su característica: ").strip()
+    #Diccionario completo con cantidad de "maximo_contactos"
+    contactos[ingreso_nombre_contacto] = int (ingreso_numero_telefono)
 
-        if not numero_telefono.isdigit():
-            print ("\n****Número inválido, vuelva a intentarlo, solo números (sin código país +)****")
-            continue
-        else:
-            break
-
-    #Diccionario completo con cantidad "maximo_contactos"    
-    contactos[nombre_contacto] = int (numero_telefono)
-
-while True:
-        print ("\n--------------------- Busca un Contacto ---------------------")
-        busqueda_de_contacto = input ("\nIngrese un nombre de contacto guardado (exacto): ").lower()
-
-        if not busqueda_de_contacto.isalpha():
-            print ("\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
-            continue
-        else:
-            break
+#Usuario ingresa nombre de contacto ya guardado para ver teléfono.
+print ("\n--------------------- Busca un Contacto ---------------------")
+busqueda_de_contacto = validacion_solo_letras_input ("\nIngrese un nombre de contacto guardado (exacto): ",
+"\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****").lower()
 
 if busqueda_de_contacto in contactos:
     #Por estética usamos .capitalize() para mostrar el nombre.
@@ -88,3 +102,10 @@ if busqueda_de_contacto in contactos:
 else:
     print ("\n****El contacto no existe****")
 print ("______________________________________")
+
+#-----------------------------------------------
+
+#5) Solicita al usuario una frase e imprime:
+#• Las palabras únicas (usando un set).
+#• Un diccionario con la cantidad de veces que aparece cada palabra.
+
