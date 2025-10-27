@@ -326,3 +326,34 @@ print ("______________________________________")
 
 #9) Creá una agenda donde las claves sean tuplas de (día, hora) y los valores sean eventos.
 #Permití consultar qué actividad hay en cierto día y hora.
+
+agenda = {('lunes', '10:00'): 'Turno Carnet', ('martes', '06:00'): 'Trabajar',
+('miércoles', '17:00'): 'Comprar comida', ('jueves', '09:00'): 'Parcial Programación'}
+
+consulta_agenda = validacion_solo_letras_input ("\nIngrese un día de la semana: ",
+                "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
+
+for (dia, hora), actividad in agenda.items():
+    if dia == consulta_agenda:
+        print (f"\n<<< {dia.capitalize()}: {hora}hs = {actividad} >>>")
+        break
+else:
+    print ("\nNo hay actividades ese día")
+print ("______________________________________")
+
+#-----------------------------------------------
+
+#10) Dado un diccionario que mapea nombres de países con sus capitales, construí un nuevo
+#diccionario donde:
+#•Las capitales sean las claves.
+#•Los países sean los valores.
+
+original = {'argentina': 'buenos aires', 'brasil': 'brasilia',
+            'chile': 'santiago', 'uruguay': 'montevideo'}
+invertido = {}
+
+for pais, capital in original.items():
+    invertido[capital] = pais
+
+print (invertido)
+print ("______________________________________")
