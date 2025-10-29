@@ -249,77 +249,74 @@ menu = ["1. Consultar stock de un producto",
         "4. Salir"]
 
 while True:
+    print ("\n\n-----------------------MENU-----------------------")
+    for m in menu:
+        print (m)
 
-    while True:
-        print ("\n\n-----------------------MENU-----------------------")
-        for m in menu:
-            print (m)
+    opcion = validacion_input_solo_numeros_n_al_m_incluyendolos ("\nIngrese una opción: ",
+    "\n****Caracteres inválidos, vuelva a intentarlo (solo números)****", 1, 4, 
+    "\n****Opción inválida, vuelva a intentarlo****")
 
-        opcion = validacion_input_solo_numeros_n_al_m_incluyendolos ("\nIngrese una opción: ",
-        "\n****Caracteres inválidos, vuelva a intentarlo (solo números)****", 1, 4, 
-        "\n****Opción inválida, vuelva a intentarlo****")
+    #La función reutilizable que usa "opcion" acepta float, y con esto se corrige.
+    if isinstance(opcion, float) and not opcion.is_integer():
+        print("\n\n****Opción inválida, vuelva a intentarlo****")
+        continue
 
-        #La función reutilizable que usa "opcion" acepta float, y con esto se corrige.
-        if isinstance(opcion, float) and not opcion.is_integer():
-            print("\n\n****Opción inválida, vuelva a intentarlo****")
-            continue
+    match opcion:
 
-        match opcion:
+        case 1:
 
-            case 1:
+            if not diccionario_de_productos:
+                print ("\n\n****Para consultar un stock primero tiene que ingresar prodúctos****")
+                continue
 
-                if not diccionario_de_productos:
-                    print ("\n\n****Para consultar un stock primero tiene que ingresar prodúctos****")
-                    continue
+            nombre_producto = validacion_solo_letras_input ("\nIngrese nombre del producto a consultar: ",
+            "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
 
-                nombre_producto = validacion_solo_letras_input ("\nIngrese nombre del producto a consultar: ",
-                "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
+            if nombre_producto in diccionario_de_productos:
+                print (f"\n\n<<< Stock de {nombre_producto.title()}: {diccionario_de_productos[nombre_producto]} unidades >>>")
+                continue
+            else:
+                print ("\n\n****El producto no existe****")
+                continue
+        case 2:
 
-                if nombre_producto in diccionario_de_productos:
-                    print (f"\n\n<<< Stock de {nombre_producto.title()}: {diccionario_de_productos[nombre_producto]} unidades >>>")
-                    continue
-                else:
-                    print ("\n\n****El producto no existe****")
-                    continue
-            case 2:
+            if not diccionario_de_productos:
+                print ("\n\n****Aún no hay productos, para agregar stock primero debe ingresar productos con opción 3.****")
+                continue
 
-                if not diccionario_de_productos:
-                    print ("\n\n****Aún no hay productos, para agregar stock primero debe ingresar productos con opción 3.****")
-                    continue
+            agrega_unidades = validacion_solo_letras_input ("\nIngrese nombre del producto (exacto) para agregar unidades: ",
+            "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
 
-                agrega_unidades = validacion_solo_letras_input ("\nIngrese nombre del producto (exacto) para agregar unidades: ",
-                "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
+            if agrega_unidades in diccionario_de_productos:
+                cantidad_stock = validacion_solo_numeros_input ("\nAgregue la cantidad de unidades: ",
+                "\n****Número inválido, vuelva a intentarlo****")
 
-                if agrega_unidades in diccionario_de_productos:
-                    cantidad_stock = validacion_solo_numeros_input ("\nAgregue la cantidad de unidades: ",
-                    "\n****Número inválido, vuelva a intentarlo****")
+                diccionario_de_productos[agrega_unidades] += int (cantidad_stock)
+                print (f"\n\n<<< Stock actualizado. {agrega_unidades.title()} tiene {diccionario_de_productos[agrega_unidades]} unidades >>>")
+                continue
+            else:
+                print ("\n\n****Ese producto no existe****")
+                continue
+        case 3:
 
-                    diccionario_de_productos[agrega_unidades] += int (cantidad_stock)
-                    print (f"\n\n<<< Stock actualizado. {agrega_unidades.title()} tiene {diccionario_de_productos[agrega_unidades]} unidades >>>")
-                    continue
-                else:
-                    print ("\n\n****Ese producto no existe****")
-                    continue
-            case 3:
+            nuevo_producto = validacion_solo_letras_input ("\nIngrese nombre del nuevo producto: ",
+            "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
 
-                nuevo_producto = validacion_solo_letras_input ("\nIngrese nombre del nuevo producto: ",
-                "\n****Caracteres inválidos, vuelva a intentarlo (solo letras)****")
+            if nuevo_producto not in diccionario_de_productos:
+                stock_nuevo_producto = validacion_solo_numeros_input ("\nAgregue la cantidad de unidades: ",
+                "\n****Número inválido, vuelva a intentarlo****")
 
-                if nuevo_producto not in diccionario_de_productos:
-                    stock_nuevo_producto = validacion_solo_numeros_input ("\nAgregue la cantidad de unidades: ",
-                    "\n****Número inválido, vuelva a intentarlo****")
+                diccionario_de_productos[nuevo_producto] = int (stock_nuevo_producto)
+                print (f"\n\n<<< Producto: {nuevo_producto.title()} y Stock: {diccionario_de_productos[nuevo_producto]} agregado con éxito >>>")
+                continue
+            else:
+                print ("\n\n****Ese producto ya existe, agregue unidades con opción 2.****")
+                continue
+        case 4:
 
-                    diccionario_de_productos[nuevo_producto] = int (stock_nuevo_producto)
-                    print (f"\n\n<<< Producto: {nuevo_producto.title()} y Stock: {diccionario_de_productos[nuevo_producto]} agregado con éxito >>>")
-                    continue
-                else:
-                    print ("\n\n****Ese producto ya existe, agregue unidades con opción 2.****")
-                    continue
-            case 4:
-
-                print ("\n<<< Nos vemos pronto >>>")
-                break
-    break
+            print ("\n<<< Nos vemos pronto >>>")
+            break
 print ("______________________________________")
 
 #-----------------------------------------------
