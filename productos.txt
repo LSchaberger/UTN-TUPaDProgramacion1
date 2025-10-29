@@ -1,0 +1,4 @@
+NOMBRE,PRECIO,CANTIDAD
+Agua Mineral,900,12
+Yerba Mate,2500,5
+Masitas Saladas,2200,3
